@@ -1,0 +1,406 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "mlmgithubtask",
+    "contact": {},
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/user/adddata": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "adddata",
+        "operationId": "adddata",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/adddatarequest"
+                  },
+                  {
+                    "example": {
+                      "username": "rohan",
+                      "email": "rohan@gmial.com",
+                      "password": "rohan"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "username": "rohan",
+                "email": "rohan@gmial.com",
+                "password": "rohan"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/user/getdata": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "getdata",
+        "operationId": "getdata",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/user/getonedata": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "getonedata",
+        "operationId": "getonedata",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "64c87696f149d00aba4957cf"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/user/updatedata": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "updatedata",
+        "operationId": "updatedata",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "64c87696f149d00aba4957cf"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/updatedatarequest"
+                  },
+                  {
+                    "example": {
+                      "username": "jayu",
+                      "email": "jayu@gmail.com",
+                      "password": "jayu"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "username": "jayu",
+                "email": "jayu@gmail.com",
+                "password": "jayu"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/user/deletedata": {
+      "delete": {
+        "tags": [
+          "user"
+        ],
+        "summary": "deletedata",
+        "operationId": "deletedata",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "64c878fcb753dba39acea7eb"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/auth/signup": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "signup",
+        "operationId": "signup",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/signuprequest"
+                  },
+                  {
+                    "example": {
+                      "username": "joih",
+                      "email": "joih@gmial.com",
+                      "password": "joih"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "username": "joih",
+                "email": "joih@gmial.com",
+                "password": "joih"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "login",
+        "operationId": "login",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/loginrequest"
+                  },
+                  {
+                    "example": {
+                      "username": "bunty",
+                      "email": "bunty@gmial.com",
+                      "password": "bunty"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "username": "bunty",
+                "email": "bunty@gmial.com",
+                "password": "bunty"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "adddatarequest": {
+        "title": "adddatarequest",
+        "required": [
+          "username",
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "username": "rohan",
+          "email": "rohan@gmial.com",
+          "password": "rohan"
+        }
+      },
+      "updatedatarequest": {
+        "title": "updatedatarequest",
+        "required": [
+          "username",
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "username": "jayu",
+          "email": "jayu@gmail.com",
+          "password": "jayu"
+        }
+      },
+      "signuprequest": {
+        "title": "signuprequest",
+        "required": [
+          "username",
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "username": "joih",
+          "email": "joih@gmial.com",
+          "password": "joih"
+        }
+      },
+      "loginrequest": {
+        "title": "loginrequest",
+        "required": [
+          "username",
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "username": "bunty",
+          "email": "bunty@gmial.com",
+          "password": "bunty"
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [],
+  "tags": [
+    {
+      "name": "user"
+    },
+    {
+      "name": "auth"
+    }
+  ]
+}
