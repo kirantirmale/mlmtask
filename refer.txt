@@ -1,0 +1,28 @@
+ if (data.id !== "") {
+            const data1 = await user.findOne({_id:req.query.id})
+            if (data1.id !== "") {
+
+                let person = await user.findOne({ _id: req.body.id })
+                let buyProduct = await product.findOne({ _id: req.body.productid })
+                let newprson = {
+                    wallet: person.wallet - buyProduct.price
+                }
+                let data = await user.updateOne({ _id: person._id }, { $set: newprson })
+                if (person.sponsorCode !== "") {
+                    let code = await user.findOne({ Userid: person.sponsorCode })
+                    let newsubperson = {
+                        wallet: sponsorperson.wallet + (buyProduct.prize * 2) / 100
+
+                    }
+                    console.log("newsubperson", newsubperson);
+                    let data = await user.updateOne({ _id: sponsorperson._id }, { $set: newsubperson })
+                }
+
+
+                return res.status(200).json(person);
+            } else {
+                return res.status(200).json("please add product");
+            }
+        } else {
+            return res.status(200).json("please add user");
+        }
