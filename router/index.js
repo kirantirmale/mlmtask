@@ -6,7 +6,7 @@ const product = require('./product/index')
 const {authorize} = require('../middleware/jwtuser')
 const { buyproduct } = require('../controller/buyProduct')
 
-router.use('/user',authorize(["admin"]),user) //,authorize(["admin"])
+router.use('/user',user) //,authorize(["admin"])
 router.use('/product',product) //,authorize(["admin"])//(["admin","user"])
 router.use('/auth',auth)
 router.post("/buyproduct",buyproduct)

@@ -10,7 +10,7 @@ exports.getdata = async (req, res) => {
 }
 exports.adddata = async (req, res) => {
     try {
-        // console.log("req.body",req.body)
+        console.log("req.body",req.body)
         let data = await user.create(req.body)
         return res.status(200).json(data)
     } catch (error) {

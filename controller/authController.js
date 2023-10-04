@@ -43,7 +43,6 @@ exports.signup = async (req, res) => {
     try {
         let coupon = await rendom()
         const data = await user.findOne({ email: req.body.email })
-        
         if (!data) {
             if (req.body.referperson) {
                 let referdata = await user.findOne({coupon:req.body.referperson})
@@ -61,7 +60,7 @@ exports.signup = async (req, res) => {
                         ammount:100
                     })
                     console.log("data", data)
-                    return res.status(200).json({ data:data })
+                    return res.status(200).json({ data:data ,status:true})
                 } else {
                 return res.status(200).json("sponsor user not found") 
                 }
@@ -84,9 +83,9 @@ exports.login = async (req, res) => {
         if (data?.username) {
             if (data.password == req.body.password) {
                 const token = jwt.sign({userid:data.userid, email: data.email, role: data.role }, 'rohan#125', { expiresIn: '10h' });
-                return res.status(200).json({ data: data, token: token, message:"successfully login",status:true })
+                return res.status(200).json({ data: data, token: token, message:"successfully login",status:true ,role :data.role })
             } else {
-                return res.status(200).json({ message: "Invalid email id or password",status:false  })
+                return res.status(200).json({ message: "Invalid email id or password",status:false   })
             }
         } else {
             return res.status(200).json({ message: "Invalid email id or password    ",status:false  })
