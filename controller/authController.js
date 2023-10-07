@@ -1,31 +1,32 @@
 const user = require('../models/user');
 const wallet = require('../models/wallet');
 var jwt = require('jsonwebtoken');   
+const nodemailer = require('nodemailer');
 
-// const rendom = () => {
-//     var coupon = '';
-//     var possible = 'abcdefghijklmnopqrstuvwxyz0123456789@#$ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-//     for (var i = 0; i < 6; i++) {
-//         coupon += possible.charAt(Math.floor(Math.random() * possible.length));
-//     }
-//     return coupon
-// }
 
-// exports.signup = async (req, res) => {
-//     try { 
-//     let code = ''
-//     code = rendom()
-//     let finalobj = {
-//         ...req.body,
-//         coupon : code
-//     }
-//         const data = await user.create(finalobj)
-//         console.log("data",data)
-//         return res.status(200).json({data:data})
-//     } catch (error) {
-//         return res.status(400).json("user not found")
-//     }
-// }
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'kirantirmale2362001@gmail.com',
+      pass: 'lpeoxqpvvgwavblf'
+    }
+  });
+  const mailOptions = {
+    
+    from: 'kirantirmale2362001@gmail.com',
+    to: "kirant@gmail.com",
+    subject: 'Sending Email using Node.js',
+    path: './form',
+    attachments: [{ 
+        filename: 'form.html',
+        path: './form.html',
+    }
+    ]
+  };
+
+
+
+
 exports.signup = async (req, res) => {
     async function rendom() {
         var coupon = '';
@@ -48,6 +49,13 @@ exports.signup = async (req, res) => {
                 let referdata = await user.findOne({coupon:req.body.referperson})
                 if (referdata.email) {     
                     let alldata = await user.find()
+                    transporter.sendMail(mailOptions, function (error, info) {
+                        if (error) {
+                          console.log(error);
+                        } else {
+                          console.log('Email sent: ' + info.response);
+                        }
+                      });
                     let finalobj = {
                         ...req.body,
                         coupon: coupon,
